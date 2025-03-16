@@ -62,9 +62,6 @@ def scrape_google_for_hiring_companies(tag="Mobile Developer", state="Germany", 
                     if link and company_name and job_title_extracted:
                         company_data = {
                             'company_name': company_name,
-                            'job_title': job_title_extracted,
-                            'link': link,
-                            'description': description
                         }
                         companies.append(company_data)
 
@@ -78,7 +75,7 @@ def scrape_google_for_hiring_companies(tag="Mobile Developer", state="Germany", 
                     continue
 
         # Create main output directory if it doesn't exist
-        output_dir = "scraped_data"
+        output_dir = "scraped/comapany"
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
 
@@ -93,7 +90,7 @@ def scrape_google_for_hiring_companies(tag="Mobile Developer", state="Germany", 
 
         # Save the data
         with open(filepath, 'w', newline='', encoding='utf-8') as file:
-            writer = csv.DictWriter(file, fieldnames=['company_name', 'job_title', 'link', 'description'])
+            writer = csv.DictWriter(file, fieldnames=['company_name'])
             writer.writeheader()
             writer.writerows(companies)
 
